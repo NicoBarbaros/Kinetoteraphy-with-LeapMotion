@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "yoyo.CSharp", "yoyo.CSharp.csproj", "{92CABB46-D963-95B3-5CEA-5F0E37F9F303}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "yoyo.CSharp.Editor", "yoyo.CSharp.Editor.csproj", "{36EA7022-9AC7-66AF-A4E8-C6CB3DF72596}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{92CABB46-D963-95B3-5CEA-5F0E37F9F303}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92CABB46-D963-95B3-5CEA-5F0E37F9F303}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92CABB46-D963-95B3-5CEA-5F0E37F9F303}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92CABB46-D963-95B3-5CEA-5F0E37F9F303}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36EA7022-9AC7-66AF-A4E8-C6CB3DF72596}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36EA7022-9AC7-66AF-A4E8-C6CB3DF72596}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36EA7022-9AC7-66AF-A4E8-C6CB3DF72596}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36EA7022-9AC7-66AF-A4E8-C6CB3DF72596}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
