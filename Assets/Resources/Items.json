@@ -1,5 +1,9 @@
 {"menu": [
-      {"value": "Grab", "power": 32},
+      {"value": "Grab",
+       "img1": "grab_1",
+       "img2": "grab_2",
+       "text": "Întindeți mâna și departați cât mai mult degetele apoi strângeți pumnul. Repetați de mai multe ori, apoi schimbați cealală mână"
+    },
       {"value": "Pinch", "onclick": "OpenDoc()"},
       {"value": "Rotate", "onclick": "CloseDoc()"}
    ]

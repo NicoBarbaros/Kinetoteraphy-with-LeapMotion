@@ -35,9 +35,6 @@ public class MoveUI : MonoBehaviour {
     }
   }
 
- 
-
-
   //toogle the moved boolean
   public void Toogle()
 	{
