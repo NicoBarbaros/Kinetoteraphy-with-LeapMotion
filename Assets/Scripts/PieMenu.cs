@@ -39,7 +39,11 @@ public class PieMenu : MonoBehaviour {
 		{
 			pieButton[i].GetComponent<RectTransform>().localScale = Vector3.zero;
 		}
-	}
+
+    float angle = RadiusSet(AngleCalculation);
+
+    StartCoroutine(Move(smoothingScale, smoothingPos, angle));
+  }
 
 	public void Update()
 	{
@@ -50,7 +54,7 @@ public class PieMenu : MonoBehaviour {
 			float i = - 10* Time.deltaTime;
 			//settings.GetComponent<RectTransform>().Rotate(0f, 0f, i);
 			ScaleButton();
-			Move (smoothingScale, smoothingPos, angle);
+		
 		}
 
 	}
@@ -73,34 +77,40 @@ public class PieMenu : MonoBehaviour {
 		//clickButton.GetComponent<RectTransform>().localScale = Vector3.Slerp(clickButton.GetComponent<RectTransform>().localScale, Vector3.zero, smoothingScale * Time.deltaTime);
 	}
 
-	private void Move(float smoothScale, float smoothingPos, float a)
-	{
-		for(int i = 0; i<numPoints;i++){
-			//multiply 'i' by '1.0f' to ensure the result is a fraction
-			float pointNum = (i*1.0f)/numPoints;
-			
-			//angle along the unit circle for placing points
-			float angle = pointNum * a;
-			
-			float x = Mathf.Sin (angle)*radiusX;
-			float y = Mathf.Cos (angle)*radiusY;
-			
-			//position for the point prefab
-			if(vertical)
-				pointPos = new Vector3(x, y)+centerPos;
-			else if (!vertical){
-				pointPos = new Vector3(x, 0, y)+centerPos;
-			}
-			//place the prefab at given position
-			axis = pieButton[i].GetComponent<RectTransform>().localPosition - pointPos;
-			axis.Normalize();
+  private IEnumerator Move(float smoothScale, float smoothingPos, float a)
+  {
+    while (true) {
+      for (int i = 0; i < numPoints; i++)
+      {
 
-			pieButton[i].GetComponent<RectTransform>().localPosition = Vector3.Lerp(pieButton[i].GetComponent<RectTransform>().localPosition, pointPos + DampedHarmonicOscilation(Amplitude, Time.time, magnitude, frequency, phaseAngle) * axis, smoothingPos * Time.deltaTime);
-			//pieButton[i].GetComponent<RectTransform>().localPosition = pointPos+ DampedHarmonicOscilation(Amplitude, Time.time, magnitude, frequency, phaseAngle) * axis ;
-			pieButton[i].GetComponent<RectTransform>().localScale = Vector3.Slerp(pieButton[i].GetComponent<RectTransform>().localScale, Vector3.one, smoothingScale * Time.deltaTime);
-			//yield return new WaitForSeconds(2f);
-		}
-	}
+        //multiply 'i' by '1.0f' to ensure the result is a fraction
+        float pointNum = (i * 1.0f) / numPoints;
+
+        //angle along the unit circle for placing points
+        float angle = pointNum * a;
+
+        float x = Mathf.Sin(angle) * radiusX;
+        float y = Mathf.Cos(angle) * radiusY;
+
+        //position for the point prefab
+        if (vertical)
+          pointPos = new Vector3(x, y) + centerPos;
+        else if (!vertical)
+        {
+          pointPos = new Vector3(x, 0, y) + centerPos;
+        }
+        //place the prefab at given position
+        axis = pieButton[i].GetComponent<RectTransform>().localPosition - pointPos;
+        axis.Normalize();
+
+        pieButton[i].GetComponent<RectTransform>().localPosition = Vector3.Lerp(pieButton[i].GetComponent<RectTransform>().localPosition, pointPos + DampedHarmonicOscilation(Amplitude, Time.time, magnitude, frequency, phaseAngle) * axis, smoothingPos * Time.deltaTime);
+        //pieButton[i].GetComponent<RectTransform>().localPosition = pointPos+ DampedHarmonicOscilation(Amplitude, Time.time, magnitude, frequency, phaseAngle) * axis ;
+        pieButton[i].GetComponent<RectTransform>().localScale = Vector3.Slerp(pieButton[i].GetComponent<RectTransform>().localScale, Vector3.one, smoothingScale * Time.deltaTime);
+      }
+      yield return null;
+
+    }
+  }
 
 	//toogle the moved boolean
 	public void Toogle()
