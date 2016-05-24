@@ -1,0 +1,6 @@
+{"menu": [
+      {"value": "Grab", "power": 32},
+      {"value": "Pinch", "onclick": "OpenDoc()"},
+      {"value": "Rotate", "onclick": "CloseDoc()"}
+   ]
+}

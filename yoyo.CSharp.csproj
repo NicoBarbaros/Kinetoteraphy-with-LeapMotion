@@ -61,6 +61,9 @@
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
+    <Reference Include="LitJson">
+      <HintPath>Assets\LitJson.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\LeapC\Arm.cs" />
@@ -150,6 +153,7 @@
     <Compile Include="Assets\Scripts\ManagerScript.cs" />
     <Compile Include="Assets\Scripts\MoveUI.cs" />
     <Compile Include="Assets\Scripts\PieMenu.cs" />
+    <Compile Include="Assets\Scripts\ReadJson.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\LeapMotion\Dependencies.txt" />
