@@ -4,19 +4,19 @@
          "value":"Grab",
          "img1":"grab_1",
          "img2":"grab_2",
-         "text":"Întindeți mâna și departați cât mai mult degetele apoi strângeți pumnul. Repetați de mai multe ori, apoi schimbați cealală mână"
+         "text":"Întindeți mâna și departați cât mai mult degetele apoi strângeți pumnul. Repetați de mai multe ori, apoi schimbați cealaltă mână"
       },
       {  
          "value":"Roll",
          "img1":"roll_1",
          "img2":"roll_2",
-         "text":"Roll"
+         "text":"Întindeți brațul înainte și intoarceti mână încet și lin la 90 de grade pe orizontală. Repetați de mai multe ori, apoi schimbați cealaltă mână "
       },
       {  
          "value":"Pinch",
          "img1":"pinch_1",
          "img2":"pinch_2",
-         "text":"Pinch"
+         "text":"Presați cu degetul mare fiecare din celelalte degete. Repetați de mai multe ori, apoi schimbați cealaltă mână"
       }
    ]
 }
