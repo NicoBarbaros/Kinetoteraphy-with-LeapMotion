@@ -22,6 +22,8 @@ public class MoveUI : MonoBehaviour {
 	{
     if (moved)
       PositionChanging(step);
+   else
+      PositionChanging(0);
    
   }
 
@@ -36,8 +38,13 @@ public class MoveUI : MonoBehaviour {
   }
 
   //toogle the moved boolean
-  public void Toogle()
+  public void Open()
 	{
 		moved = true;
 	}
+
+  public void Close()
+  {
+    moved = false;
+  }
 }
