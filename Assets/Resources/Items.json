@@ -1,10 +1,22 @@
-{"menu": [
-      {"value": "Grab",
-       "img1": "grab_1",
-       "img2": "grab_2",
-       "text": "Întindeți mâna și departați cât mai mult degetele apoi strângeți pumnul. Repetați de mai multe ori, apoi schimbați cealală mână"
-    },
-      {"value": "Pinch", "onclick": "OpenDoc()"},
-      {"value": "Rotate", "onclick": "CloseDoc()"}
+{  
+   "menu":[  
+      {  
+         "value":"Grab",
+         "img1":"grab_1",
+         "img2":"grab_2",
+         "text":"Întindeți mâna și departați cât mai mult degetele apoi strângeți pumnul. Repetați de mai multe ori, apoi schimbați cealală mână"
+      },
+      {  
+         "value":"Roll",
+         "img1":"roll_1",
+         "img2":"roll_2",
+         "text":"Roll"
+      },
+      {  
+         "value":"Pinch",
+         "img1":"pinch_1",
+         "img2":"pinch_2",
+         "text":"Pinch"
+      }
    ]
 }
