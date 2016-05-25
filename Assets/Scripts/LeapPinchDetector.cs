@@ -176,7 +176,11 @@ namespace Leap.Unity {
       //Debug.Log("roll" + roll);
 
       float rollDegrees = ToDegrees(roll);
-      Debug.Log("rollDegrees" + rollDegrees);
+      //Debug.Log("rollDegrees" + rollDegrees);
+
+
+
+
       //Vector handXBasis = hand.PalmNormal.Cross(hand.Direction).Normalized;
       //Debug.Log("handXBasis" + handXBasis);
 
