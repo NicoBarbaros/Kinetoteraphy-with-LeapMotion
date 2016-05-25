@@ -29,14 +29,6 @@ public class ReadJson : MonoBehaviour
   {
     jsonString = File.ReadAllText(Application.dataPath + "/Resources/Items.json");
     itemData = JsonMapper.ToObject(jsonString);
-    Debug.Log(jsonString);
-    Debug.Log(GetItem("Grab", "menu")["text"]);
-  }
-
-  // Update is called once per frame
-
-  void Update()
-  {
   }
 
   JsonData GetItem(string value, string type)
@@ -56,22 +48,20 @@ public class ReadJson : MonoBehaviour
     switch (pressedButton)
     {
       case "Grab":
-        selectedText = GetItem(pressedButton, "menu")["text"].ToString();
-        leftImageName = GetItem(pressedButton, "menu")["img1"].ToString();
-        rightImageName = GetItem(pressedButton, "menu")["img2"].ToString();
+        selectedText = GetItem(pressedButton, "tips")["text"].ToString();
+        leftImageName = GetItem(pressedButton, "tips")["img1"].ToString();
+        rightImageName = GetItem(pressedButton, "tips")["img2"].ToString();
         break;
 
       case "Roll":
-        selectedText = GetItem(pressedButton, "menu")["text"].ToString();
-        leftImageName = GetItem(pressedButton, "menu")["img1"].ToString();
-        rightImageName = GetItem(pressedButton, "menu")["img2"].ToString();
-        Debug.Log("Roll");
+        selectedText = GetItem(pressedButton, "tips")["text"].ToString();
+        leftImageName = GetItem(pressedButton, "tips")["img1"].ToString();
+        rightImageName = GetItem(pressedButton, "tips")["img2"].ToString();
         break;
       case "Pinch":
-        selectedText = GetItem(pressedButton, "menu")["text"].ToString();
-        leftImageName = GetItem(pressedButton, "menu")["img1"].ToString();
-        rightImageName = GetItem(pressedButton, "menu")["img2"].ToString();
-        Debug.Log("Pinch");
+        selectedText = GetItem(pressedButton, "tips")["text"].ToString();
+        leftImageName = GetItem(pressedButton, "tips")["img1"].ToString();
+        rightImageName = GetItem(pressedButton, "tips")["img2"].ToString();
         break;
       default:
         Debug.Log("Default case");
