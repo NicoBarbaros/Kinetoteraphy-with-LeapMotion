@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,15 +14,15 @@ namespace Leap.Unity {
   public class LeapPinchDetector : MonoBehaviour {
 
     protected const float MM_TO_M = 0.001f;
-    
+
     [SerializeField]
     public IHandModel _handModel;
 
     [SerializeField]
-    protected float _activatePinchDist = 0.03f;
+    protected float _activatePinchDist = 0.3f;
 
     [SerializeField]
-    protected float _deactivatePinchDist = 0.04f;
+    protected float _deactivatePinchDist = 0.4f;
 
     protected int _lastUpdateFrame = -1;
 
@@ -35,6 +37,12 @@ namespace Leap.Unity {
     protected Hand handType;
 
     protected bool canPinch = false;
+    protected List<Finger> fingers;
+
+    public Text text;
+    protected bool canGrow = false;
+    protected int grabCounter = 0;
+
     protected virtual void OnValidate() {
       if (_handModel == null) {
         _handModel = GetComponentInParent<IHandModel>();
@@ -137,7 +145,7 @@ namespace Leap.Unity {
       }
     }
 
-   public Hand HandType
+    public Hand HandType
     {
       get
       {
@@ -145,7 +153,7 @@ namespace Leap.Unity {
         return handType;
       }
     }
-    
+
     protected virtual void ensurePinchInfoUpToDate() {
       if (Time.frameCount == _lastUpdateFrame) {
         return;
@@ -155,6 +163,9 @@ namespace Leap.Unity {
       _didChange = false;
 
       Hand hand = _handModel.GetLeapHand();
+
+
+      ////Trying to pinch each finger with thumb
       handType = hand;
 
       //Vector handXBasis = hand.PalmNormal.Cross(hand.Direction).Normalized;
@@ -166,27 +177,11 @@ namespace Leap.Unity {
         return;
       }
 
-     // handType(hand);
-      float pinchDistance = hand.PinchDistance * MM_TO_M;
 
-      if (_isPinching) {
-        if (pinchDistance > _deactivatePinchDist) {
-          changePinchState(false);
-                    Debug.Log("is't a pinch!");
-          return;
-        }
-      } else {
-        if (pinchDistance < _activatePinchDist) {
-          changePinchState(true);
-                    Debug.Log("is a pinch!");
-        }
-      }
+      FingerTips(hand);
+      // handType(hand);
 
-      if (_isPinching) {
-        _pinchPos = transform.position;
-        Debug.Log("adeadae");
-       // _pinchRotation = transform.rotation;
-      }
+
     }
 
     protected virtual void changePinchState(bool shouldBePinching) {
@@ -205,6 +200,8 @@ namespace Leap.Unity {
     public void CanPinch()
     {
       canPinch = true;
+      grabCounter = 0;
+      text.text = grabCounter.ToString();
     }
 
     public void CannotPinch()
@@ -212,6 +209,105 @@ namespace Leap.Unity {
       canPinch = false;
     }
 
+
+    protected void FingerTips(Hand h)
+    {
+      Dictionary<string, Vector3> fingerInfo = new Dictionary<string, Vector3>();
+      List<Finger> fingers = h.Fingers;
+
+      foreach (Finger finger in fingers)
+      {
+        fingerInfo.Add(finger.Type.ToString(), finger.TipPosition.ToVector3());
+      }
+      Debug.Log(fingerInfo.Count);
+
+      var toIndexDist = GetDistanceToThumb(fingerInfo, 0, 1);
+      var toMiddleDist = GetDistanceToThumb(fingerInfo, 0, 2);
+      var toRingDist = GetDistanceToThumb(fingerInfo, 0, 3);
+      var toPinkyDist = GetDistanceToThumb(fingerInfo, 0, 4);
+
+
+      if (_isPinching)
+      {
+        if (toIndexDist > _deactivatePinchDist)
+        {
+          canGrow = true;
+          changePinchState(false);
+          //Debug.Log("isn't a pinch! with index");
+          return;
+        }
+
+        else if (toMiddleDist > _deactivatePinchDist)
+        {
+          canGrow = true;
+          changePinchState(false);
+          //Debug.Log("isn't a pinch with middle");
+        }
+        else if (toRingDist > _deactivatePinchDist)
+        {
+          canGrow = true;
+          changePinchState(false);
+          //Debug.Log("isn't a pinch with ring");
+        }
+        else if (toPinkyDist > _deactivatePinchDist)
+        {
+          canGrow = true;
+          changePinchState(false);
+          //Debug.Log("isn't a pinch with Pinky");
+        }
+
+        Debug.Log("Yoooo");
+
+      }
+      else
+      {
+        if (toIndexDist < _activatePinchDist)
+        {
+          if(canGrow)
+            SetCounter();
+          changePinchState(true);
+          Debug.Log("is a pinch!");
+        }
+        else if (toMiddleDist < _activatePinchDist)
+        {
+          if(canGrow)
+            SetCounter();
+
+          changePinchState(true);
+          Debug.Log("is a pinch with middle");
+        }
+        else if (toRingDist < _activatePinchDist)
+        {
+          if(canGrow)
+            SetCounter();
+
+          changePinchState(true);
+          Debug.Log("is a pinch with Ring");
+        }
+        else if (toPinkyDist < _activatePinchDist)
+        {
+          if (canGrow)
+            SetCounter();
+          changePinchState(true);
+          Debug.Log("is a pinch with Pinky");
+        }
+      }
+
+    }
+
+    protected float GetDistanceToThumb(Dictionary<string, Vector3> fingers, int firstPosition, int secondPosition)
+    {
+      float distance = (float)Math.Round(Vector3.Distance(fingers.ElementAt(firstPosition).Value, fingers.ElementAt(secondPosition).Value), 4) * 10.0f;
+      return distance;
+    }
+
+    protected void SetCounter()
+    {
+      grabCounter++;
+      text.text = grabCounter.ToString();
+      Debug.Log(grabCounter);
+      canGrow = false;
+    }
     //protected virtual void handType()
     //{
     //  Hand h = _handModel.GetLeapHand();

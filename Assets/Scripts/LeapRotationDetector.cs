@@ -90,8 +90,6 @@ namespace Leap.Unity
       grabCounter++;
       text.text = grabCounter.ToString();
       canGrow = false;
-      Debug.Log(canGrow);
-
     }
   }
 }

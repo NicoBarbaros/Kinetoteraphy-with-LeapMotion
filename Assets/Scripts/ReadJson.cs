@@ -19,15 +19,15 @@ public class ReadJson : MonoBehaviour
     itemData = JsonMapper.ToObject(jsonString);
   }
 
-  public JsonData GetItem(string value, string type)
+  public JsonData GetItem(string value, string type) 
   {
-
     for (int i = 0; i < itemData[type].Count; i++)
     {
       if (itemData[type][i]["value"].ToString() == value)
         return itemData[type][i];
     }
-
     return null;
   }
+
+  public void Count() { }
 }
