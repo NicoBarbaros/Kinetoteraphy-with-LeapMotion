@@ -10,7 +10,7 @@ namespace Leap.Unity
 
     [SerializeField]
     public IHandModel _handModel;
-
+    protected bool canGrab = false;
     protected virtual void OnValidate()
     {
       if (_handModel == null)
@@ -40,7 +40,16 @@ namespace Leap.Unity
     // Update is called once per frame
     void Update()
     {
-      ensureGrabInfo();
+      if (canGrab)
+      {
+        Debug.Log("Can Grab");
+        ensureGrabInfo();
+      }
+
+      else
+      {
+        Debug.Log("Cannot grab");
+      }
     }
 
     protected virtual void ensureGrabInfo()
@@ -52,6 +61,16 @@ namespace Leap.Unity
     }
 
 
+
+    public void CanGrab()
+    {
+      canGrab = true;
+    }
+
+    public void CannotGrab()
+    {
+      canGrab = false;
+    }
     /*
     * Detect a close hand
     * by checking if all fingers are wide open (extended)

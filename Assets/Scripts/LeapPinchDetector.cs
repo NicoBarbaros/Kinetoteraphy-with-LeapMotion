@@ -34,6 +34,7 @@ namespace Leap.Unity {
     protected Quaternion _pinchRotation;
     protected Hand handType;
 
+    protected bool canPinch = false;
     protected virtual void OnValidate() {
       if (_handModel == null) {
         _handModel = GetComponentInParent<IHandModel>();
@@ -62,7 +63,13 @@ namespace Leap.Unity {
       //We ensure the data is up to date at all times because
       //there are some values (like LastPinchTime) that cannot
       //be updated on demand
-      ensurePinchInfoUpToDate();
+      if (canPinch)
+      {
+        ensurePinchInfoUpToDate();
+        Debug.Log("can Pinch");
+      }
+      else
+        Debug.Log("cannot pinch");
     }
 
     /// <summary>
@@ -170,13 +177,9 @@ namespace Leap.Unity {
 
       float pitch = hand.Direction.Pitch;
       float yaw = hand.Direction.Yaw;
-      float roll = -hand.PalmNormal.Roll;
       ////Debug.Log("pitc" + pitch);
       ////Debug.Log("yaw" + yaw);
-      //Debug.Log("roll" + roll);
 
-      float rollDegrees = ToDegrees(roll);
-      //Debug.Log("rollDegrees" + rollDegrees);
 
 
 
@@ -218,6 +221,7 @@ namespace Leap.Unity {
 
 
 
+
     protected virtual void changePinchState(bool shouldBePinching) {
       if (_isPinching != shouldBePinching) {
         _isPinching = shouldBePinching;
@@ -230,6 +234,17 @@ namespace Leap.Unity {
 
         _didChange = true;
       }
+    }
+
+
+    public void CanPinch()
+    {
+      canPinch = true;
+    }
+
+    public void CannotPinch()
+    {
+      canPinch = false;
     }
     //protected virtual void handType()
     //{
@@ -249,12 +264,5 @@ namespace Leap.Unity {
     //    Debug.Log("There are no hands");
     //  }
     //}
-
-    float ToDegrees (float Radian)
-    {
-      float Degrees;
-      Degrees = Radian * 180 / Mathf.PI;
-      return Degrees;
-    }
   }
 }
