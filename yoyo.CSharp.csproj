@@ -154,6 +154,7 @@
     <Compile Include="Assets\Scripts\MoveUI.cs" />
     <Compile Include="Assets\Scripts\PieMenu.cs" />
     <Compile Include="Assets\Scripts\ReadJson.cs" />
+    <Compile Include="Assets\Scripts\SetData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\LeapMotion\Dependencies.txt" />

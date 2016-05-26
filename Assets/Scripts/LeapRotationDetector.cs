@@ -43,11 +43,6 @@ namespace Leap.Unity
         Debug.Log("Can roll");
         ensureRollInfo();
       }
-
-      else
-      {
-        Debug.Log("Cannot roll");
-      }
     }
 
     protected virtual void ensureRollInfo()
@@ -70,6 +65,7 @@ namespace Leap.Unity
     public void CanRoll()
     {
       canRoll = true;
+      
     }
 
     public void CannotRoll()

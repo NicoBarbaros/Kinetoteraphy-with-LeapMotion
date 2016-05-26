@@ -68,13 +68,9 @@ namespace Leap.Unity {
         ensurePinchInfoUpToDate();
         Debug.Log("can Pinch");
       }
-      else
-        Debug.Log("cannot pinch");
     }
 
-    /// <summary>
     /// Returns whether or not the dectector is currently detecting a pinch.
-    /// </summary>
     public bool IsPinching {
       get {
         ensurePinchInfoUpToDate();
@@ -82,10 +78,8 @@ namespace Leap.Unity {
       }
     }
 
-    /// <summary>
     /// Returns whether or not the value of IsPinching is different than the value reported during
     /// the previous frame.
-    /// </summary>
     public bool DidChangeFromLastFrame {
       get {
         ensurePinchInfoUpToDate();
@@ -93,9 +87,7 @@ namespace Leap.Unity {
       }
     }
 
-    /// <summary>
     /// Returns whether or not the value of IsPinching changed to true between this frame and the previous.
-    /// </summary>
     public bool DidStartPinch {
       get {
         ensurePinchInfoUpToDate();
@@ -103,9 +95,7 @@ namespace Leap.Unity {
       }
     }
 
-    /// <summary>
     /// Returns whether or not the value of IsPinching changed to false between this frame and the previous.
-    /// </summary>
     public bool DidEndPinch {
       get {
         ensurePinchInfoUpToDate();
@@ -113,9 +103,7 @@ namespace Leap.Unity {
       }
     }
 
-    /// <summary>
     /// Returns the value of Time.time during the most recent pinch event.
-    /// </summary>
     public float LastPinchTime {
       get {
         ensurePinchInfoUpToDate();
@@ -123,9 +111,7 @@ namespace Leap.Unity {
       }
     }
 
-    /// <summary>
     /// Returns the value of Time.time during the most recent unpinch event.
-    /// </summary>
     public float LastUnpinchTime {
       get {
         ensurePinchInfoUpToDate();
@@ -133,10 +119,8 @@ namespace Leap.Unity {
       }
     }
 
-    /// <summary>
     /// Returns the position value of the detected pinch.  If a pinch is not currently being
     /// detected, returns the most recent pinch position value.
-    /// </summary>
     public Vector3 Position {
       get {
         ensurePinchInfoUpToDate();
@@ -144,10 +128,8 @@ namespace Leap.Unity {
       }
     }
 
-    /// <summary>
     /// Returns the rotation value of the detected pinch.  If a pinch is not currently being
     /// detected, returns the most recent pinch rotation value.
-    /// </summary>
     public Quaternion Rotation {
       get {
         ensurePinchInfoUpToDate();
@@ -175,15 +157,6 @@ namespace Leap.Unity {
       Hand hand = _handModel.GetLeapHand();
       handType = hand;
 
-      float pitch = hand.Direction.Pitch;
-      float yaw = hand.Direction.Yaw;
-      ////Debug.Log("pitc" + pitch);
-      ////Debug.Log("yaw" + yaw);
-
-
-
-
-
       //Vector handXBasis = hand.PalmNormal.Cross(hand.Direction).Normalized;
       //Debug.Log("handXBasis" + handXBasis);
 
@@ -194,11 +167,7 @@ namespace Leap.Unity {
       }
 
      // handType(hand);
-
       float pinchDistance = hand.PinchDistance * MM_TO_M;
-      //transform.rotation = hand.Basis.CalculateRotation();
-
-      //transform.position = Vector3.zero;
 
       if (_isPinching) {
         if (pinchDistance > _deactivatePinchDist) {
@@ -215,12 +184,10 @@ namespace Leap.Unity {
 
       if (_isPinching) {
         _pinchPos = transform.position;
+        Debug.Log("adeadae");
        // _pinchRotation = transform.rotation;
       }
     }
-
-
-
 
     protected virtual void changePinchState(bool shouldBePinching) {
       if (_isPinching != shouldBePinching) {
@@ -231,11 +198,9 @@ namespace Leap.Unity {
         } else {
           _lastUnpinchTime = Time.time;
         }
-
         _didChange = true;
       }
     }
-
 
     public void CanPinch()
     {
@@ -246,6 +211,7 @@ namespace Leap.Unity {
     {
       canPinch = false;
     }
+
     //protected virtual void handType()
     //{
     //  Hand h = _handModel.GetLeapHand();

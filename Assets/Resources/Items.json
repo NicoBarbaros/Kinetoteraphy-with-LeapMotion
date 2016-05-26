@@ -18,5 +18,25 @@
          "img2":"pinch_2",
          "text":"Presați cu degetul mare fiecare din celelalte degete. Repetați de mai multe ori, apoi schimbați cealaltă mână"
       }
+   ],
+
+    "scoring":[  
+      {  
+         "value":"0",
+         "text":"Salut, Alege un exercițiu și hai să începem"
+      },
+      {  
+         "value":"1",
+         "text":"Bravo"
+      },
+       {  
+         "value":"2",
+         "text":"Binișor, continuați!"
+      },
+      {  
+         "value":"3",
+         "text":"Superb! Acum schimbați mână sau încercați alt exercițiu"
+      }
    ]
 }
+
