@@ -4,30 +4,30 @@
          "value":"Grab",
          "img1":"grab_1",
          "img2":"grab_2",
-         "text":"Întindeți mâna și departați cât mai mult degetele apoi strângeți pumnul. Repetați de mai multe ori, apoi schimbați cealaltă mână"
+         "text":"Întindeți mâna și departați cât mai mult degetele apoi strângeți pumnul. Repetați de mai multe ori, apoi schimbați cealaltă mână."
       },
       {  
          "value":"Roll",
          "img1":"roll_1",
          "img2":"roll_2",
-         "text":"Întindeți brațul înainte și intoarceti mână încet și lin la 90 de grade pe orizontală. Repetați de mai multe ori, apoi schimbați cealaltă mână "
+         "text":"Întindeți brațul înainte și intoarceti mână încet și lin la 90 de grade pe orizontală. Repetați de mai multe ori, apoi schimbați cealaltă mână."
       },
       {  
          "value":"Pinch",
          "img1":"pinch_1",
          "img2":"pinch_2",
-         "text":"Presați cu degetul mare fiecare din celelalte degete. Repetați de mai multe ori, apoi schimbați cealaltă mână"
+         "text":"Presați cu degetul mare fiecare din celelalte degete. Repetați de mai multe ori, apoi schimbați cealaltă mână."
       }
    ],
 
     "scoring":[  
       {  
          "value":"0",
-         "text":"Salut, Alege un exercițiu și hai să începem"
+         "text":"Salut, alege un exercițiu și hai să începem."
       },
       {  
          "value":"1",
-         "text":"Binișor, nu utați să o faceți încet"
+         "text":"Binișor, nu uitați să o faceți încet."
       },
        {  
          "value":"2",
@@ -35,7 +35,7 @@
       },
       {  
          "value":"3",
-         "text":"Superb! Acum schimbați mână sau încercați alt exercițiu"
+         "text":"Superb! Acum continuați, schimbați mâna sau încercați alt exercițiu."
       }
    ]
 }

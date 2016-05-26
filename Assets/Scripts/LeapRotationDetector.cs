@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 namespace Leap.Unity
@@ -8,6 +9,9 @@ namespace Leap.Unity
 
     [SerializeField]
     public IHandModel _handModel;
+    public Text text;
+    protected bool canGrow = false;
+    protected int grabCounter = 0;
     protected bool canRoll = false;
     protected virtual void OnValidate()
     {
@@ -40,7 +44,6 @@ namespace Leap.Unity
     {
       if (canRoll)
       {
-        Debug.Log("Can roll");
         ensureRollInfo();
       }
     }
@@ -49,10 +52,18 @@ namespace Leap.Unity
     {
       Hand hand = _handModel.GetLeapHand();
       float roll = -hand.PalmNormal.Roll;
-      ////Debug.Log("pitc" + pitch);
-      ////Debug.Log("yaw" + yaw);
-      Debug.Log("roll" + roll);
       float rollDegrees = ToDegrees(roll);
+      Debug.Log(rollDegrees);
+      if((rollDegrees > 85 || rollDegrees < -85))
+      {
+        if(canGrow)
+          SetCounter();
+      }
+
+      else
+      {
+        canGrow = true;
+      }
     }
 
     protected float ToDegrees(float Radian)
@@ -65,12 +76,22 @@ namespace Leap.Unity
     public void CanRoll()
     {
       canRoll = true;
-      
+      grabCounter = 0;
+      text.text = grabCounter.ToString();
     }
 
     public void CannotRoll()
     {
       canRoll = false;
+    }
+
+    protected void SetCounter()
+    {
+      grabCounter++;
+      text.text = grabCounter.ToString();
+      canGrow = false;
+      Debug.Log(canGrow);
+
     }
   }
 }
