@@ -40,7 +40,10 @@ namespace Leap.Unity {
     protected List<Finger> fingers;
 
     public Text text;
-    protected bool canGrow = false;
+    protected bool canGrowIndex = true;
+    protected bool canGrowMiddle = true;
+    protected bool canGrowRing = true;
+    protected bool canGrowPinky = true;
     protected int grabCounter = 0;
 
     protected virtual void OnValidate() {
@@ -231,65 +234,62 @@ namespace Leap.Unity {
       {
         if (toIndexDist > _deactivatePinchDist)
         {
-          canGrow = true;
+          canGrowIndex = true;
           changePinchState(false);
           //Debug.Log("isn't a pinch! with index");
           return;
         }
 
-        else if (toMiddleDist > _deactivatePinchDist)
+       else if (toMiddleDist > _deactivatePinchDist)
         {
-          canGrow = true;
-          changePinchState(false);
-          //Debug.Log("isn't a pinch with middle");
-        }
-        else if (toRingDist > _deactivatePinchDist)
-        {
-          canGrow = true;
-          changePinchState(false);
-          //Debug.Log("isn't a pinch with ring");
-        }
-        else if (toPinkyDist > _deactivatePinchDist)
-        {
-          canGrow = true;
-          changePinchState(false);
-          //Debug.Log("isn't a pinch with Pinky");
+          canGrowMiddle = true;
+          //Debug.Log("isn't a pinch! with index");
+          return;
         }
 
-        Debug.Log("Yoooo");
+       else if (toRingDist > _deactivatePinchDist)
+        {
+          canGrowRing = true;
+          //Debug.Log("isn't a pinch! with index");
+          return;
+        }
+
+       else if (toPinkyDist > _deactivatePinchDist)
+        {
+          canGrowPinky = true;
+          //Debug.Log("isn't a pinch! with index");
+          return;
+        }
+
+
 
       }
       else
       {
         if (toIndexDist < _activatePinchDist)
         {
-          if(canGrow)
-            SetCounter();
+          if (canGrowIndex)
+            SetCounterIndex();
           changePinchState(true);
-          Debug.Log("is a pinch!");
         }
         else if (toMiddleDist < _activatePinchDist)
         {
-          if(canGrow)
-            SetCounter();
-
+          if (canGrowMiddle)
+            SetCounterMiddle();
           changePinchState(true);
-          Debug.Log("is a pinch with middle");
         }
         else if (toRingDist < _activatePinchDist)
         {
-          if(canGrow)
-            SetCounter();
+          if (canGrowRing)
+            SetCounterRing();
 
           changePinchState(true);
-          Debug.Log("is a pinch with Ring");
         }
         else if (toPinkyDist < _activatePinchDist)
         {
-          if (canGrow)
-            SetCounter();
+          if (canGrowPinky)
+            SetCounterPinky();
           changePinchState(true);
-          Debug.Log("is a pinch with Pinky");
         }
       }
 
@@ -301,13 +301,34 @@ namespace Leap.Unity {
       return distance;
     }
 
-    protected void SetCounter()
+    protected void SetCounterIndex()
     {
       grabCounter++;
       text.text = grabCounter.ToString();
-      Debug.Log(grabCounter);
-      canGrow = false;
+      canGrowIndex = false;
     }
+
+    protected void SetCounterMiddle()
+    {
+      grabCounter++;
+      text.text = grabCounter.ToString();
+      canGrowMiddle = false;
+    }
+
+    protected void SetCounterRing()
+    {
+      grabCounter++;
+      text.text = grabCounter.ToString();
+      canGrowRing = false;
+    }
+
+    protected void SetCounterPinky()
+    {
+      grabCounter++;
+      text.text = grabCounter.ToString();
+      canGrowPinky = false;
+    }
+
     //protected virtual void handType()
     //{
     //  Hand h = _handModel.GetLeapHand();
