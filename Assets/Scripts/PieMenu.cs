@@ -20,7 +20,7 @@ public class PieMenu : MonoBehaviour {
 	public float magnitude = 1f;   // Size of sine movement
 	public float Amplitude = 1.0f;
 	public float phaseAngle = 2.0f;
-
+  private Intro intro;
 	private Vector3 axis;
 	public enum Radius
 	{
@@ -40,14 +40,13 @@ public class PieMenu : MonoBehaviour {
 			pieButton[i].GetComponent<RectTransform>().localScale = Vector3.zero;
 		}
 
+    intro = new Intro();
     float angle = RadiusSet(AngleCalculation);
-
-    StartCoroutine(Move(smoothingScale, smoothingPos, angle));
+    StartCoroutine(Wait(smoothingScale, smoothingPos, angle));
   }
 
 	public void Update()
 	{
-		float angle = RadiusSet (AngleCalculation);
 		if (moved) 
 		{
 		
@@ -77,6 +76,11 @@ public class PieMenu : MonoBehaviour {
 		//clickButton.GetComponent<RectTransform>().localScale = Vector3.Slerp(clickButton.GetComponent<RectTransform>().localScale, Vector3.zero, smoothingScale * Time.deltaTime);
 	}
 
+  private IEnumerator Wait(float smoothScale, float smoothingPos, float angle)
+  {
+    yield return new WaitForSeconds(intro.waitingTime  + 2);
+    StartCoroutine(Move(smoothingScale, smoothingPos, angle));
+  }
   private IEnumerator Move(float smoothScale, float smoothingPos, float a)
   {
     while (true) {
