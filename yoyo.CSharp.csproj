@@ -146,6 +146,7 @@
     <Compile Include="Assets\LeapMotionModules\PinchUtility\Examples\Scripts\MengerSponge.cs" />
     <Compile Include="Assets\LeapMotionModules\PinchUtility\Examples\Scripts\PinchDraw.cs" />
     <Compile Include="Assets\LeapMotionModules\PinchUtility\Examples\Scripts\VRHeightOffset.cs" />
+    <Compile Include="Assets\Scripts\Intro.cs" />
     <Compile Include="Assets\Scripts\LeapGrabDetector.cs" />
     <Compile Include="Assets\Scripts\LeapPinchDetector.cs" />
     <Compile Include="Assets\Scripts\LeapRTS.cs" />
