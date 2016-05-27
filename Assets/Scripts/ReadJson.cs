@@ -15,8 +15,9 @@ public class ReadJson : MonoBehaviour
   }
   void Awake()
   {
-    jsonString = File.ReadAllText(Application.dataPath + "/Resources/Items.json");
-    itemData = JsonMapper.ToObject(jsonString);
+    TextAsset text = Resources.Load("Items") as TextAsset;
+    jsonString = text.text;
+     itemData = JsonMapper.ToObject(jsonString);
   }
 
   public JsonData GetItem(string value, string type) 
